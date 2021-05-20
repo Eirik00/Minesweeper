@@ -4,14 +4,22 @@
     padding: 10px;
 }
 .grid-item, .bombers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: rgb(200, 200, 200);
     border: 1px solid rgb(0, 0, 0);
-    padding: 20px;
-    font-size: 30px;
+    font-size: 12px;
     text-align: center;
+    height: 30px;
 }
 div p {
     visibility: hidden;
+}
+img {
+    display: none;
+    width: 32px;
+    height: 32px;
 }
 /*.bombers {
     background-color: rgb(255, 0, 0);

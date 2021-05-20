@@ -2,12 +2,17 @@ let gridPlace = document.getElementById("gamewindow");
 let gridH = document.getElementById("gHeight");
 let gridW = document.getElementById("gWidth");
 let gridBomb = document.getElementById("gbombs");
+let lost = 1;
 
 function gameInit() {
+    console.log(gridPlace.childNodes.length);
+    for(let i=0;i<gridPlace.childNodes.length;i++){
+        gridPlace.childNodes[0].remove();
+    }    
     let gridAmmount = gridH.value*gridW.value;
     let gridAuto = "";
     for(let i=0;i<gridW.value;i++){
-        gridAuto = "170px "+gridAuto;
+        gridAuto = "32px "+gridAuto;
     }
     gridPlace.style = "grid-template-columns: "+gridAuto;
     let curColum = 1;
@@ -23,6 +28,7 @@ function gameInit() {
                 let nw = document.createElement("img");
                 if(Cnumbr.innerHTML == "B"){
                     nw.src="img/explosion.png";
+                    nw.style.display = "inline-block";
                     Cnumbr.style.display = "none";
                 }
                 this.appendChild(nw);
@@ -38,9 +44,7 @@ function gameInit() {
             curLine = curLine + 1;
             curColum = 1;
         }
-        console.log(gridW.value)
     }
-    console.log("hey");
     
     let bombAmmount = gridBomb.value/100;
     let totalsq = gridW.value*gridH.value;
@@ -155,3 +159,4 @@ function gameInit() {
     console.log(bombAmmount*totalsq);
 }
 document.getElementById("startGen").onclick = gameInit;
+gameInit();
