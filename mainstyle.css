@@ -1,17 +1,37 @@
 .grid-container {
     display: grid;
     grid-template-columns: auto auto auto auto;
-    padding: 10px;
 }
 .grid-item, .bombers {
     background-color: rgb(200, 200, 200);
-    border: 1px solid rgb(0, 0, 0);
-    padding: 20px;
-    font-size: 30px;
-    text-align: center;
+    border-style: inset;
+    border: 2px;
+    border-style: inset;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 32px;
+}
+img {
+    height: 32px;
+    width: 32px;
+    margin-bottom: -3.8px;
 }
 div p {
     visibility: hidden;
+    display: none;
+}
+#failed {
+    display: none;
+}
+#show {
+    display: block;
+    visibility: visible;
+}
+.shownSquare {
+    background-color: rgb(220, 220, 220);
+    border-style: inset;
+    border: 2px;
+    border-style: inset;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 /*.bombers {
     background-color: rgb(255, 0, 0);
