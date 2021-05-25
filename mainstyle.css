@@ -34,6 +34,22 @@ body {
     display: block;
     padding: 10px;
 }
+#failed {
+    display: none;
+}
+#show {
+    display: block;
+    visibility: visible;
+}
+#footer {
+    position: fixed;
+    bottom: 0;
+    padding-bottom: 10px; 
+}
+#footer a {
+    color: rgb(150,150,150);
+    font-size: 12px;
+}
 .grid-container {
     background-color: rgb(255,255,255);
     border: 4px solid rgb(130, 130, 130);
@@ -60,6 +76,15 @@ body {
     visibility: visible;
     display: block;
 }
+.shownSquare {
+    background-color: rgb(230, 230, 230);
+    border-style: inset;
+    border: 2px;
+    border-style: inset;
+}
+input {
+    display: block;
+}
 img {
     height: 32px;
     width: 32px;
@@ -68,23 +93,4 @@ img {
 div p {
     visibility: hidden;
     display: none;
-}
-#failed {
-    display: none;
-}
-#show {
-    display: block;
-    visibility: visible;
-}
-.shownSquare {
-    background-color: rgb(230, 230, 230);
-    border-style: inset;
-    border: 2px;
-    border-style: inset;
-}
-/*.bombers {
-    background-color: rgb(255, 0, 0);
-}*/
-input {
-    display: block;
 }
