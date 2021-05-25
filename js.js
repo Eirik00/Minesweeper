@@ -8,19 +8,18 @@ let howManyBombs = 0;
 let numbmb = 0;
 let cantplay = 0;
 let gridSize = 0;
+let gridAuto = "";
 
 function gameInit() {
     if(gridW.value > 40){
         gridW.value = 40;
     }
     let gridAmmount = gridH.value*gridW.value;
-    let gridAuto = "";
     for(let i=0;i<gridW.value;i++){
         gridAuto = "36px "+gridAuto;
         gridSize = gridSize+36;
     }
-    gridPlace.style = "grid-template-columns: "+gridAuto;
-    gridPlace.style.width = gridSize+"px";
+    gridPlace.style = "grid-template-columns: "+gridAuto+";width: "+gridSize+"px";
     let curColum = 1;
     let curLine = 1;
     for(let i=0;i<gridAmmount;i++){
@@ -32,17 +31,8 @@ function gameInit() {
             if(cantplay == 1){return;}
             makeBombQ = 1;
             let Cnumbr = this.childNodes[0];
-            this.setAttribute("class", "shownSquare");
             if(Cnumbr.style.visibility != "visible"){
-                Cnumbr.style.visibility = "visible";
-                let nw = document.createElement("img");
-                if(Cnumbr.innerHTML == "B"){
-                    nw.src="img/explosion.png";
-                    cantplay = 1;
-                }else{
-                    nw.src="img/"+Cnumbr.innerHTML+".png";
-                }
-                this.appendChild(nw);
+                makeVisible(Cnumbr, this);
                 checkPlay();
                 return;
             }
@@ -81,7 +71,6 @@ function gameInit() {
             curLine = curLine + 1;
             curColum = 1;
         }
-        console.log(gridW.value)
     }
     let totalsq = gridW.value*gridH.value;
     let bombAmmount = gridBomb.value/100;
@@ -110,11 +99,8 @@ function genBombs(cBmb){
     usedClass.shift();
     for(let i=0;i<currbmb;i++){
         let curVal = usedClass[i];
-        console.log(document.getElementsByClassName("bombers"));
-        console.log(usedClass);
         let x = curVal.split(",")[0];
         let y = curVal.split(",")[1];
-        console.log("x:"+x+"|y:"+y);
         
         let up = parseInt(x)-1;
         let vmid = parseInt(x);
@@ -207,10 +193,108 @@ function checkPlay(){
 function removeGrids() {
     var gridItems = document.getElementById("gamewindow").childNodes;
     let gridLength = gridItems.length;
-    for(let i=0;i<gridLength-1;i++){
-        gridItems[1].remove();
+    for(let i=0;i<gridLength;i++){
+        gridItems[0].remove();
     }
 }
+function makeVisible(Cnumbr, tile) {
+    Cnumbr.style.visibility = "visible";
+    tile.setAttribute("class", "shownSquare");
+    let nw = document.createElement("img");
+    if(Cnumbr.innerHTML == "B"){
+        let bombs = document.getElementsByClassName("bombers");
+        for(let i=0;i<bombs.length;i++){
+            let nw = document.createElement("img");
+            nw.src="img/explosion.png";
+            bombs[i].appendChild(nw);
+        }
+        nw.src="img/explosion.png";
+        cantplay = 1;
+    }else if(Cnumbr.innerHTML == "0"){
+        nw.src="img/0.png";
+        emptyZero(Cnumbr);
+    }else{
+        nw.src="img/"+Cnumbr.innerHTML+".png";
+    }
+    tile.appendChild(nw);
+}
+function emptyZero(Cnumbr) {
+    let curVal = Cnumbr.parentElement.id;
+    let x = curVal.split(",")[0];
+    let y = curVal.split(",")[1];
+    
+    let up = parseInt(x)-1;
+    let vmid = parseInt(x);
+    let down = parseInt(x)+1;
+    let left = parseInt(y)-1;
+    let hmid = parseInt(y);
+    let right = parseInt(y)+1;
+    //UL
+    if(up>0 && left>0){
+        let squAr = document.getElementById(up+","+left);
+        let squAre = squAr.childNodes[0];
+        if(squAre.style.visibility != "visible"){
+            makeVisible(squAre, squAr);
+        }
+    }
+    //UM
+    if(up>0){
+        let squAr = document.getElementById(up+","+y);
+        let squAre = squAr.childNodes[0];
+        if(squAre.style.visibility != "visible"){
+            makeVisible(squAre, squAr);
+        }
+    }
+    //UR
+    if(up>0 && right<=gridW.value){
+        let squAr = document.getElementById(up+","+right);
+        let squAre = squAr.childNodes[0];
+        if(squAre.style.visibility != "visible"){
+            makeVisible(squAre, squAr);
+        }
+    }
+    //ML
+    if(left>0){
+        let squAr = document.getElementById(vmid+","+left);
+        let squAre = squAr.childNodes[0];
+        if(squAre.style.visibility != "visible"){
+            makeVisible(squAre, squAr);
+        }
+    }
+    //MR
+    if(right<=gridW.value){
+        let squAr = document.getElementById(vmid+","+right);
+        let squAre = squAr.childNodes[0];
+        if(squAre.style.visibility != "visible"){
+            makeVisible(squAre, squAr);
+        }
+    }
+    //DL
+    if(down<=gridH.value && left>0){
+        let squAr = document.getElementById(down+","+left);
+        let squAre = squAr.childNodes[0];
+        if(squAre.style.visibility != "visible"){
+            makeVisible(squAre, squAr);
+        }
+    }
+    //DM
+    if(down<=gridH.value){
+        let squAr = document.getElementById(down+","+y);
+        let squAre = squAr.childNodes[0];
+        if(squAre.style.visibility != "visible"){
+            makeVisible(squAre, squAr);
+        }
+    }
+    //DR
+    if(down<=gridH.value && right<=gridW.value){
+        let squAr = document.getElementById(down+","+right);
+        let squAre = squAr.childNodes[0];
+        if(squAre.style.visibility != "visible"){
+            makeVisible(squAre, squAr);
+        }
+    }
+}
+
 document.getElementById("restart").onclick = function() {
     removeGrids();
     cantplay = 0;
@@ -224,6 +308,9 @@ document.getElementById("restart").onclick = function() {
     howManyBombs = 0;
     numbmb = 0;
     cantplay = 0;
+    gridAuto = "";
+    gridSize = 0;
+    gridPlace.style = "";
     
     document.getElementById("leftBmbs").innerHTML = "Bombs Left: "+howManyBombs;
     document.getElementById("startGen").style.display = "block";
