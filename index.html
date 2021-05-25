@@ -4,20 +4,25 @@
         <link rel="stylesheet" href="mainstyle.css">
     </head>
     <body>
-        <h1>Minesweeper</h1>
-        <input value="16" type="number" id="gWidth" name="Wth">
-        <label for="Wth">Width</label>
-        <input value="16" type="number" id="gHeight" name="Hth">
-        <label for="Hth">Height</label>
-        <input value="15" type="number" id="gbombs" name="bomb">
-        <label for="bomb">Bombs%</label>
-        <p id="leftBmbs">Bombs Left:</p>
-        <div id="failed">
-            <p id="show">You failed :(</p>
-            <button id="restart">Restart</button>
+        <div id="theDiv">
+            <p id="theTitle">Minesweeper</p>
         </div>
-        <button id="startGen">Generate</button>
-        <div id="gamewindow" class="grid-container">
+        <div id="menuTab">
+            <label for="Wth">Width</label>
+            <input value="16" max="40" type="number" id="gWidth" name="Wth">
+            <label for="Hth">Height</label>
+            <input value="16" type="number" id="gHeight" name="Hth">
+            <label for="bomb">Bombs%</label>
+            <input value="15" type="number" id="gbombs" name="bomb">
+            <p id="leftBmbs">Bombs Left:</p>
+            <div id="failed">
+                <p id="show">You failed :(</p>
+                <button id="restart">Restart</button>
+            </div>
+            <button id="startGen">Generate</button>
+        </div>
+        <div class="center">
+            <div id="gamewindow" class="grid-container"></div>
         </div>
     </body>
     <script src="js.js"></script>

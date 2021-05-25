@@ -7,14 +7,20 @@ let usedClass = [];
 let howManyBombs = 0;
 let numbmb = 0;
 let cantplay = 0;
+let gridSize = 0;
 
 function gameInit() {
+    if(gridW.value > 40){
+        gridW.value = 40;
+    }
     let gridAmmount = gridH.value*gridW.value;
     let gridAuto = "";
     for(let i=0;i<gridW.value;i++){
         gridAuto = "36px "+gridAuto;
+        gridSize = gridSize+36;
     }
     gridPlace.style = "grid-template-columns: "+gridAuto;
+    gridPlace.style.width = gridSize+"px";
     let curColum = 1;
     let curLine = 1;
     for(let i=0;i<gridAmmount;i++){
