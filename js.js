@@ -47,6 +47,25 @@ function gameInit() {
                 let nw = document.createElement("img");
                 nw.src = "img/flag.png";
                 this.appendChild(nw);
+                if(howManyBombs == 1){
+                    let correctFlag = 0;
+                    for(let i=0;i<usedClass.length;i++){
+                        if(document.getElementById(usedClass[i]).childNodes.length == 2){    
+                            let cx = document.getElementById(usedClass[i]).childNodes[1];
+                            if(cx.src.endsWith("flag.png")){
+                                correctFlag++;
+                            }
+                        }
+                    }
+                    if(correctFlag == usedClass.length){
+                        document.getElementById("win").style.display = "block";
+                        cantplay = 1;
+                    }else{
+                        howManyBombs--;
+                        document.getElementById("leftBmbs").innerHTML = "Bombs Left: "+howManyBombs;
+                        return;
+                    }
+                }
                 howManyBombs--;
                 document.getElementById("leftBmbs").innerHTML = "Bombs Left: "+howManyBombs;
             }else if(Cnumbr.style.visibility == "visible"){
@@ -295,7 +314,7 @@ function emptyZero(Cnumbr) {
     }
 }
 
-document.getElementById("restart").onclick = function() {
+function Gamerestart(){
     removeGrids();
     cantplay = 0;
     howManyBombs = 0;
@@ -315,9 +334,19 @@ document.getElementById("restart").onclick = function() {
     document.getElementById("leftBmbs").innerHTML = "Bombs Left: "+howManyBombs;
     document.getElementById("startGen").style.display = "block";
     document.getElementById("failed").style.display = "none";
+    document.getElementById("win").style.display = "none";
 }
 document.getElementById("startGen").onclick = function() {
     this.style.display = "none";
     cantplay = 0;
     gameInit();
-};
+}
+function tuto(n) {
+    if(n==1){
+        document.getElementById("dark").style.display = "block";
+        document.getElementById("tutorial").style.display = "block";
+    }else{
+        document.getElementById("dark").style.display = "none";
+        document.getElementById("tutorial").style.display = "none";
+    }
+}

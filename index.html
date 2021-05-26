@@ -2,6 +2,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="mainstyle.css">
+        <title>Minesweeper</title>
     </head>
     <body>
         <div id="theDiv">
@@ -17,7 +18,11 @@
             <p id="leftBmbs">Bombs Left:</p>
             <div id="failed">
                 <p id="show">You failed :(</p>
-                <button id="restart">Restart</button>
+                <button onclick="Gamerestart()">Restart</button>
+            </div>
+            <div id="win">
+                <p id="show">You Win :)</p>
+                <button onclick="Gamerestart()">Restart</button>
             </div>
             <button id="startGen">Generate</button>
         </div>
@@ -26,6 +31,12 @@
         </div>
         <div id="footer">
             <a href="https://github.com/Eirik00/Minesweeper">Source Code</a>
+            <a href="#" onclick="tuto(1)">How to play</a>
+        </div>
+        <div id="dark"></div>
+        <div id="tutorial">
+            <button onclick="tuto(0)">Exit</button>
+            <p>insert tutorial here</p>
         </div>
     </body>
     <script src="js.js"></script>
