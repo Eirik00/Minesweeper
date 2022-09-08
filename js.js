@@ -103,8 +103,8 @@ function genBombs(cBmb){
     let currbmb = 0;
     
     for(let i=0;i<numBmb;i++){
-        let x = 1+Math.floor(Math.random()*(gridH.value-1));
-        let y = 1+Math.floor(Math.random()*(gridW.value-1));
+        let x = 1+Math.floor(Math.random()*(gridH.value));
+        let y = 1+Math.floor(Math.random()*(gridW.value));
         let divClass = x+","+y;
 
         if(!usedClass.includes(divClass)){
@@ -146,7 +146,7 @@ function genBombs(cBmb){
             }
         }
         //UR
-        if(up>0 && right<gridW.value+1){
+        if(up>0 && right<parseInt(gridW.value)+1){
             let squAr = document.getElementById(up+","+right);
             let squAre = squAr.childNodes[0];
             let namE = squAr.className;
@@ -164,7 +164,7 @@ function genBombs(cBmb){
             }
         }
         //MR
-        if(right<gridW.value+1){
+        if(right<parseInt(gridW.value)+1){
             let squAr = document.getElementById(vmid+","+right);
             let squAre = squAr.childNodes[0];
             let namE = squAr.className;
@@ -173,7 +173,7 @@ function genBombs(cBmb){
             }
         }
         //DL
-        if(down<gridH.value+1 && left>0){
+        if(down<parseInt(gridH.value)+1 && left>0){
             let squAr = document.getElementById(down+","+left);
             let squAre = squAr.childNodes[0];
             let namE = squAr.className;
@@ -182,7 +182,7 @@ function genBombs(cBmb){
             }
         }
         //DM
-        if(down<gridH.value+1){
+        if(down<parseInt(gridH.value)+1){
             let squAr = document.getElementById(down+","+y);
             let squAre = squAr.childNodes[0];
             let namE = squAr.className;
@@ -191,7 +191,7 @@ function genBombs(cBmb){
             }
         }
         //DR
-        if(down<gridH.value+1 && right<gridW.value+1){
+        if(down<parseInt(gridH.value)+1 && right<parseInt(gridW.value)+1){
             let squAr = document.getElementById(down+","+right);
             let squAre = squAr.childNodes[0];
             let namE = squAr.className;
